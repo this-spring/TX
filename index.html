@@ -1,0 +1,37 @@
+<!--
+ * @Author: xiuquanxu
+ * @Company: kaochong
+ * @Date: 2020-11-23 11:42:16
+ * @LastEditors: xiuquanxu
+ * @LastEditTime: 2020-11-23 12:07:20
+-->
+<html>
+    <meta charset="UTF-8">
+    <body>
+        <div id="app">
+            <p t-text="xxq"></p>
+            <p t-show="show">show 是否展示</p>
+            <p t-click="handleClick">click 点击</p>
+            <p t-class="red">class</p>
+            <p t-for="item in arr">
+                <span>item</span>
+            </p>
+        </div>
+    </body>
+</html>
+
+<script src="./TX.js"></script>
+<script>
+    const tx = new TX({
+        id: "app",
+        data: {
+            xxq: "xxq",
+            show: false
+        },
+        methods: {
+            handleClick: () => {
+                this.xxq = 'yyx';
+            }
+        }
+    });
+</script>
