@@ -3,7 +3,7 @@
  * @Company: kaochong
  * @Date: 2020-11-23 11:26:06
  * @LastEditors: xiuquanxu
- * @LastEditTime: 2020-11-23 11:42:00
+ * @LastEditTime: 2020-11-23 16:29:48
 -->
 # TX
 simple mvvm frame, not vdom and diff
@@ -27,3 +27,17 @@ simple mvvm frame, not vdom and diff
     <span>item</span>
 </p>
 ```
+
+## design  
+
+根据t-*标记选中所有自定义属性标签->建立binds[key] = [Node, Node1];这样映射关系->把第一步中自定义标签根据key的值push到binds中，会形成例如：  
+
+```
+binds:
+{
+    text: [Node, Node1.....],
+    show: [Node, Node1.....]
+}
+```
+
+-> 通过proxy代理用户传入数据，当数据改变然后出发Node的update事件
