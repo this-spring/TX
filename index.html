@@ -3,16 +3,24 @@
  * @Company: kaochong
  * @Date: 2020-11-23 11:42:16
  * @LastEditors: xiuquanxu
- * @LastEditTime: 2020-11-23 16:36:30
+ * @LastEditTime: 2020-11-24 13:04:27
 -->
 <html>
     <meta charset="UTF-8">
+    <style>
+        .red {
+            background-color: red;
+        }
+        .blue {
+            background-color: blue;
+        }
+    </style>
     <body>
         <div id="app">
             <p t-text="xxq"></p>
             <p t-show="show">show 是否展示</p>
             <p t-click="handleClick">click 点击</p>
-            <p t-class="red">class</p>
+            <p t-class="color">class</p>
             <p t-for="item in arr">
                 <span>item</span>
             </p>
@@ -26,7 +34,8 @@
         id: "app",
         data: {
             xxq: "xxq",
-            show: false
+            show: false,
+            color: 'red',
         },
         methods: {
             handleClick: () => {
@@ -36,5 +45,7 @@
     });
     setTimeout(() => {
         tx.data.xxq = 'yyx';
+        tx.data.show = true;
+        tx.data.color = 'blue';
     }, 3 * 1000);
 </script>
