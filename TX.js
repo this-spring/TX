@@ -3,7 +3,7 @@
  * @Company: kaochong
  * @Date: 2020-11-23 11:42:28
  * @LastEditors: xiuquanxu
- * @LastEditTime: 2020-11-24 13:02:59
+ * @LastEditTime: 2020-11-24 13:19:22
 */
 
 class Direct {
@@ -69,10 +69,11 @@ class TX {
         // this.data: 外部代理使用实际绑定的是proxy
         // this._data: 真实proxy代理的数据，初始化所有属性值都是{}
         const data = opt.data;
+        const methods = opt.methods;
         this._data = {};
-        this._directMap = new Map();
         this.key = ["text", "show", "class", "click"];
         this.direction = [];
+        this.methods = new Map();
         this.key.forEach((value) => {
            this.direction.push(`t-${value}`);
         });
@@ -81,21 +82,18 @@ class TX {
             this._data[key] = '';
             this.binds[key] = [];
         }
+        for (let fun in methods) {
+            this.methods.set(fun, methods[fun]);
+        }
         this.direction.forEach((key) => {
             document.querySelectorAll(`[${key}]`).forEach((node) => {
              this.bindingNode(node);
             });
         });
         this.data = this.bindReactive();
-        this.bindDirectMap();
         for (let key in data) {
             this.data[key] = data[key];
         }
-    }
-
-    bindDirectMap() {
-        this._directMap.set('t-text', Text);
-        this._directMap.set('t-show', Show);
     }
 
     bindReactive() {
@@ -130,10 +128,6 @@ class TX {
 
     bindingDirectToData(name, value, node) {
         let direct = null;
-        if (this._directMap.has(name)) {
-            direct = new this._directMap.get(name)(node);
-            this.binds[value].push(direct);
-        }
         if (name === 't-text') {
             direct = new Text(node);
             this.binds[value].push(direct);   
@@ -143,6 +137,9 @@ class TX {
         } else if (name === 't-class') {
             direct = new TClass(node);
             this.binds[value].push(direct);
+        } else if (name === 't-click') {
+            const self = this;
+            node.addEventListener('click', this.methods.get(value).bind(self))
         }
     }
 }

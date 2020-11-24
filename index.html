@@ -3,7 +3,7 @@
  * @Company: kaochong
  * @Date: 2020-11-23 11:42:16
  * @LastEditors: xiuquanxu
- * @LastEditTime: 2020-11-24 13:04:27
+ * @LastEditTime: 2020-11-24 13:20:33
 -->
 <html>
     <meta charset="UTF-8">
@@ -39,7 +39,8 @@
         },
         methods: {
             handleClick: () => {
-                this.xxq = 'yyx';
+                console.log('handleClick');
+                tx.data.xxq = 'yyx2';
             }
         }
     });
