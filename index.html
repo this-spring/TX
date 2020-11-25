@@ -3,7 +3,7 @@
  * @Company: kaochong
  * @Date: 2020-11-23 11:42:16
  * @LastEditors: xiuquanxu
- * @LastEditTime: 2020-11-24 13:20:33
+ * @LastEditTime: 2020-11-25 12:01:01
 -->
 <html>
     <meta charset="UTF-8">
@@ -22,7 +22,8 @@
             <p t-click="handleClick">click 点击</p>
             <p t-class="color">class</p>
             <p t-for="item in arr">
-                <span>item</span>
+                <span t-text="item.msg"></span>
+                <span t-show="item.show">展示</span>
             </p>
         </div>
     </body>
@@ -36,6 +37,16 @@
             xxq: "xxq",
             show: false,
             color: 'red',
+            arr: [{
+                msg: '1',
+                show: true
+            }, {
+                msg: '2',
+                show: false
+            }, {
+                msg: '3',
+                show: true
+            }]
         },
         methods: {
             handleClick: () => {

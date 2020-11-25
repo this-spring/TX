@@ -1,0 +1,30 @@
+<!--
+ * @Author: xiuquanxu
+ * @Company: kaochong
+ * @Date: 2020-11-25 12:50:52
+ * @LastEditors: xiuquanxu
+ * @LastEditTime: 2020-11-25 13:04:16
+-->
+<html>
+    <meta charset="utf-8">
+    <style>
+        .red {
+            background-color: red;
+        }
+    </style>
+    <body>
+        <div id="app">
+
+        </div>
+    </body>
+</html>
+<script src="./vdom.js"></script>
+<script>
+    // 目标新建vdom同时实现渲染
+    const node1 = new VNode('div', '', [
+        new VNode('span', {
+            class: 'red'
+        }, [], 'span1')
+    ], 'div1');
+    document.getElementById('app').appendChild(node1.render());
+</script>
