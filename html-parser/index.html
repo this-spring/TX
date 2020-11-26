@@ -1,0 +1,30 @@
+<!--
+ * @Author: xiuquanxu
+ * @Company: kaochong
+ * @Date: 2020-11-26 14:28:43
+ * @LastEditors: xiuquanxu
+ * @LastEditTime: 2020-11-26 14:58:44
+-->
+<html>
+    <meta charset="utf-8">
+    <body>
+        <div id="app">
+            <p t-text="xxq"></p>
+            <p t-show="show">show 是否展示</p>
+            <p t-click="handleClick">click 点击</p>
+            <p t-class="color">class</p>
+            <p t-for="item in arr">
+                <span t-text="item.msg"></span>
+                <span t-show="item.show">展示</span>
+            </p>
+        </div>
+    </body>
+</html>
+
+<script src="./dom-parser.js"></script>
+
+<script>
+    const parser = new Parser(document.getElementById('app'));
+    const parserObjRes = parser.parserObjectHtml(document.getElementById('app'));
+    console.log(' parserObjRes:', parserObjRes);
+</script>
